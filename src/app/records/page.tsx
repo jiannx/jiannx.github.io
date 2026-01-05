@@ -1,0 +1,67 @@
+import Link from 'next/link'
+import { getAllPosts } from '@/lib/posts'
+import PaperContainer from '@/components/PaperContainer'
+import Pagination from '@/components/Pagination'
+
+const POSTS_PER_PAGE = 12
+
+export default async function RecordsPage() {
+  const allPosts = await getAllPosts()
+  const currentPage = 1
+  const totalPages = Math.ceil(allPosts.length / POSTS_PER_PAGE)
+
+  const startIndex = 0
+  const endIndex = POSTS_PER_PAGE
+  const posts = allPosts.slice(startIndex, endIndex)
+
+  return (
+    <div>
+      <h1 className="text-4xl font-bold mb-12">记录</h1>
+
+      {posts.length === 0 ? (
+        <p className="text-[var(--color-text-secondary)]">暂无文章</p>
+      ) : (
+        <>
+          <div className="space-y-8">
+            {posts.map(post => (
+              <Link
+                key={post.slug}
+                href={`/records/${post.slug}`}
+                className="block group"
+              >
+                <article className="pb-8 border-b border-[var(--color-border)] hover:border-primary transition-colors">
+                  <h2 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors">
+                    {post.title}
+                  </h2>
+                  <p className="text-[var(--color-text-secondary)] mb-4 leading-relaxed">
+                    {post.description}
+                  </p>
+                  <div className="flex items-center gap-4 text-sm text-[var(--color-text-secondary)]">
+                    <time>{post.date}</time>
+                    {post.tags && post.tags.length > 0 && (
+                      <div className="flex gap-2 flex-wrap">
+                        {post.tags.map(tag => (
+                          <span key={tag} className="text-primary">
+                            #{tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </article>
+              </Link>
+            ))}
+          </div>
+
+          {totalPages > 1 && (
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              basePath="/records/p"
+            />
+          )}
+        </>
+      )}
+    </div>
+  )
+}

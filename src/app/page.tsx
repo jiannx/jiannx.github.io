@@ -1,84 +1,98 @@
-import { CardGrid, Card, Page, Typed } from '@/components';
-import { Metadata } from 'next';
-import { Post, postsGetList } from '@/services/posts';
-import { momentsGetList } from '@/services/moments';
+import Link from 'next/link'
+import Image from 'next/image'
+import { getRecentPosts } from '@/lib/posts'
+import { getRecentMoments } from '@/lib/moments'
+import PaperContainer from '@/components/PaperContainer'
 
-export const metadata: Metadata = {
-  title: 'LemooLu\'s Blog',
-  description: "LemooLu\'s Blog, web, web-developer, frontend, react",
-}
-
-export default async function () {
-  const posts = await postsGetList(6);
-  const moments = await momentsGetList();
+export default async function Home() {
+  const recentPosts = await getRecentPosts(5)
+  const recentMoments = await getRecentMoments(3)
 
   return (
-    <Page>
-      <div className='flex flex-row h-[80vh] flex-wrap-reverse -mt-16 pc:h-screen'>
-        <div className='w-full h-1/2 flex-col flex items-center justify-center pc:w-2/5 pc:h-full'>
-          <p className='text-6xl mb-6 font-light'>
-            Jiann <span className='text-primary'>Lu</span>
-          </p>
-          <Typed
-            strings={[
-              'Do not go gentle into that good night. 🏕️',
-              '这里记录日常的一些思考，希望遇到同频的朋友。',
-              // '我目前专注的方向是 独立开发'
-            ]}
-          />
-        </div>
-        <div
-          className="w-full h-1/2 bg-[url('/images/banner.webp')] bg-cover pc:w-3/5 pc:h-full"
-          style={{
-            transform: 'rotateY(180deg)'
-          }}
-        >
-        </div>
-      </div>
+    <div>
+      {/* Recent Posts */}
+      {recentPosts.length > 0 && (
+        <>
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="text-2xl font-bold">最近记录</h2>
+            <Link
+              href="/records"
+              className="text-sm text-[var(--color-text-secondary)] hover:text-primary transition-colors"
+            >
+              查看全部 →
+            </Link>
+          </div>
 
-      <Page.Container size='lg'>
-        <CardGrid title='Moment'>
-          {moments.slice(0, 3).map((moment) => (
-            <Card.Moment
-              key={moment.hash}
-              title={moment.content}
-              fromTitle={moment.fromTitle}
-              fromLink={moment.fromLink}
-            />
-          ))}
-        </CardGrid>
+          <div className="space-y-6">
+            {recentPosts.map(post => (
+              <Link
+                key={post.slug}
+                href={`/records/${post.slug}`}
+                className="block group"
+              >
+                <article className="py-4 border-b border-[var(--color-border)] hover:border-primary transition-colors">
+                  <h3 className="text-xl font-medium mb-2 group-hover:text-primary transition-colors">
+                    {post.title}
+                  </h3>
+                  <p className="text-[var(--color-text-secondary)] text-sm mb-2 line-clamp-2">
+                    {post.description}
+                  </p>
+                  <div className="flex items-center gap-4 text-sm text-[var(--color-text-secondary)]">
+                    <time>{post.date}</time>
+                    {post.tags && post.tags.length > 0 && (
+                      <div className="flex gap-2">
+                        {post.tags.slice(0, 3).map(tag => (
+                          <span key={tag} className="text-primary">
+                            #{tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </article>
+              </Link>
+            ))}
+          </div>
+        </>
+      )}
 
-        <CardGrid title='Posts'>
-          {posts.map((post: Post) => (
-            <Card.Blog
-              key={post.hash}
-              title={post.title}
-              desc={post.description}
-              data={post.date}
-              href={`/blog/${post.hash}`}
-            />
-          ))}
-        </CardGrid>
+      {/* Recent Moments */}
+      {recentMoments.length > 0 && (
+        <PaperContainer>
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="text-2xl font-bold">时刻</h2>
+            <Link
+              href="/moments"
+              className="text-sm text-[var(--color-text-secondary)] hover:text-primary transition-colors"
+            >
+              查看全部 →
+            </Link>
+          </div>
 
-        <CardGrid title='Gallery' grid={false}>
-          <div className="carousel carousel-center w-full space-x-4">
-            {[
-              '/images/i1.jpg',
-              // '/images/i2.jpg',
-              '/images/i3.jpg',
-              '/images/i4.jpg',
-              '/images/i5.jpg',
-              // '/images/i6.jpg',
-              '/images/i7.jpg',
-              '/images/i8.jpg',
-            ].map((url: string) => (
-              <div className="carousel-item">
-                <img src={url} className="rounded-md max-h-96" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {recentMoments.map(moment => (
+              <div key={moment.id} className="space-y-2">
+                {moment.images[0] && (
+                  <div className="aspect-square bg-[var(--color-border)] rounded-lg overflow-hidden relative">
+                    <Image
+                      src={moment.images[0]}
+                      alt={moment.description}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                )}
+                <p className="text-sm text-[var(--color-text-secondary)] line-clamp-2">
+                  {moment.description}
+                </p>
+                <time className="text-xs text-[var(--color-text-secondary)]">
+                  {moment.date}
+                </time>
               </div>
             ))}
           </div>
-        </CardGrid>
-      </Page.Container>
-    </Page>
+        </PaperContainer>
+      )}
+    </div>
   )
 }

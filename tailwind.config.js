@@ -1,15 +1,27 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: ['selector', '[data-mode="dark"]'],
+  darkMode: ['class'],
   content: [
-    // Or if using `src` directory:
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    screens: {
-      'pc': '640px',
+    extend: {
+      colors: {
+        primary: '#D23669',
+        'primary-light': '#E84A7A',
+      },
+      maxWidth: {
+        'content': '680px',
+      },
+      fontFamily: {
+        sans: ['var(--font-noto-sans)', 'system-ui', 'sans-serif'],
+        serif: ['var(--font-noto-serif)', 'Georgia', 'serif'],
+        mono: ['var(--font-fira-code)', 'Menlo', 'monospace'],
+      },
+      lineHeight: {
+        'relaxed': '1.8',
+      },
     },
-    extend: {},
   },
   plugins: [
     require("@tailwindcss/typography"),

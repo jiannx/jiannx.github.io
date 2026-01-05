@@ -1,51 +1,27 @@
-import { Copy, Link, Page } from "@/components";
-import { IconBrandWechat, IconBrandX, IconCurrentLocation, IconMail } from "@tabler/icons-react";
+import PaperContainer from '@/components/PaperContainer'
 
-export default function () {
+export default function AboutPage() {
   return (
-    <Page size='lg'>
-      <div className="rounded-2xl overflow-hidden shadow-xl mt-12 flex flex-col pc:flex-row border border-secondary-content">
-        <div className="w-0 h-100 bg-[url('/images/aboutbg.jpg')] bg-cover pc:w-1/3">
-        </div>
-        <div className="w-full max-w-600 p-12 prose pc:w-2/3">
-          <h2>Jiann Lu</h2>
-          <p>
-            Ten years of full-stack Engineer, Focus on Internet product design and development
-          </p>
-          <h4>Previously</h4>
-          <ul>
-            <li>
-              Expert front-end development at Shuopan Intelligent Technology working on Low-Code Development Platform
-            </li>
-            <li>
-              Staff full-stack development at Alibaba working on Digital agriculture SaaS and IoT Platform.
-            </li>
-            <li>
-              Front-end development at Didi working on car service marketing platform and energy-related business.
-            </li>
-          </ul>
+    <div className="px-6 py-20">
+      <h1 className="text-4xl font-bold mb-8">关于</h1>
 
-          <div className="grid grid-flow-col gap-4 w-40">
-            <Copy copyTip="Copy Wechat" copyData="lomo_hao">
-              <IconBrandWechat stroke={1} />
-            </Copy>
-            <Copy copyTip="Copy Email" copyData="lemoo.lu@gmail.com">
-              <IconMail stroke={1} />
-            </Copy>
-            {/* <Link>
-                <IconBrandWhatsapp stroke={1} />
-              </Link> */}
-            <div className="tooltip" data-tip="Click to open">
-              <Link href="https://x.com/jiann_lu" target="_blank">
-                <IconBrandX stroke={1} />
-              </Link>
-            </div>
-            <Copy copyTip="Hangzhou, China" copyData="Hangzhou, China">
-              <IconCurrentLocation stroke={1} />
-            </Copy>
-          </div>
-        </div>
+      <div className="prose prose-lg max-w-none">
+        <h2 className="text-2xl font-bold mt-8 mb-4">Jiann Lu</h2>
+        <p className="text-[var(--color-text-secondary)] leading-relaxed">
+          十年全栈工程师，专注于互联网产品设计与开发。
+        </p>
+
+        <h3 className="text-xl font-bold mt-8 mb-4">Previously</h3>
+        <ul className="space-y-2 text-[var(--color-text-secondary)]">
+          <li>硕盘智能科技 - 前端专家，从事低代码开发平台</li>
+          <li>阿里巴巴 - 全栈开发，从事数字农业 SaaS 和物联网平台</li>
+        </ul>
+
+        <h3 className="text-xl font-bold mt-8 mb-4">Contact</h3>
+        <p className="text-[var(--color-text-secondary)]">
+          Email: lemmoo.lu@gmail.com
+        </p>
       </div>
-    </Page>
+    </div>
   )
 }
