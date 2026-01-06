@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 
-const momentsDirectory = path.join(process.cwd(), 'posts/moments')
+const postsDirectory = path.join(process.cwd(), 'posts')
 
 export interface Moment {
   id: string
@@ -13,28 +13,40 @@ export interface Moment {
   content?: string
 }
 
-// 获取所有时刻文件
-function getAllMomentFiles(): string[] {
+// 递归获取所有 markdown 文件
+function getAllMarkdownFiles(dir: string): string[] {
+  const files: string[] = []
+  
   try {
-    if (!fs.existsSync(momentsDirectory)) {
-      return []
-    }
+    const entries = fs.readdirSync(dir, { withFileTypes: true })
     
-    const files = fs.readdirSync(momentsDirectory)
-    return files
-      .filter(file => file.endsWith('.md'))
-      .map(file => path.join(momentsDirectory, file))
+    for (const entry of entries) {
+      const fullPath = path.join(dir, entry.name)
+      
+      if (entry.isDirectory()) {
+        // 递归扫描子目录
+        files.push(...getAllMarkdownFiles(fullPath))
+      } else if (entry.isFile() && entry.name.endsWith('.md')) {
+        files.push(fullPath)
+      }
+    }
   } catch (error) {
-    console.error('Error reading moments directory:', error)
-    return []
+    console.error(`Error reading directory ${dir}:`, error)
   }
+  
+  return files
 }
 
-// 解析单个时刻
+// 解析单个时刻（从 post 文件中筛选）
 function parseMoment(filePath: string): Moment | null {
   try {
     const fileContents = fs.readFileSync(filePath, 'utf8')
     const { data, content } = matter(fileContents)
+    
+    // 只处理带有 images 字段的文件
+    if (!data.images || !Array.isArray(data.images) || data.images.length === 0) {
+      return null
+    }
     
     const fileName = path.basename(filePath, '.md')
     const id = fileName
@@ -42,7 +54,7 @@ function parseMoment(filePath: string): Moment | null {
     return {
       id,
       date: data.date || new Date().toISOString().split('T')[0],
-      images: data.images || [],
+      images: data.images,
       description: data.description || content.slice(0, 100),
       location: data.location,
       content: content || '',
@@ -55,9 +67,9 @@ function parseMoment(filePath: string): Moment | null {
 
 // 获取所有时刻
 export async function getAllMoments(): Promise<Moment[]> {
-  const momentFiles = getAllMomentFiles()
+  const markdownFiles = getAllMarkdownFiles(postsDirectory)
   
-  const moments = momentFiles
+  const moments = markdownFiles
     .map(parseMoment)
     .filter((moment): moment is Moment => moment !== null)
     .sort((a, b) => {

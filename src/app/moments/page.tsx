@@ -22,32 +22,27 @@ export default async function MomentsPage() {
         <p className="text-[var(--color-text-secondary)]">暂无时刻</p>
       ) : (
         <>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="space-y-24">
             {moments.map(moment => (
-              <div key={moment.id} className="space-y-3">
+              <div key={moment.id} className="space-y-8 flex flex-col align-center">
                 {moment.images[0] && (
-                  <div className="aspect-square bg-[var(--color-border)] rounded-lg overflow-hidden relative group">
-                    <Image
-                      src={moment.images[0]}
-                      alt={moment.description}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
+                  <Image
+                    src={moment.images[0]}
+                    alt={moment.description}
+                    width={800}
+                    height={800}
+                    className="w-full h-auto max-h-[400px] object-contain"
+                  />
                 )}
-                <div className="space-y-2">
-                  <p className="text-[var(--color-text-secondary)] leading-relaxed">
-                    {moment.description}
-                  </p>
-                  <div className="flex items-center gap-2 text-xs text-[var(--color-text-secondary)]">
-                    <time>{moment.date}</time>
-                    {moment.location && (
-                      <>
-                        <span>·</span>
-                        <span>{moment.location}</span>
-                      </>
-                    )}
-                  </div>
+                <div className="flex items-center gap-2 text-xs text-[var(--color-text-secondary)] align-center justify-center">
+                  <time>{moment.date}</time>
+                  {moment.location && (
+                    <>
+                      <span>·</span>
+                      <span>{moment.location}</span>
+                    </>
+                  )}
+                  {moment.description}
                 </div>
               </div>
             ))}
