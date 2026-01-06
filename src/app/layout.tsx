@@ -19,7 +19,7 @@ export default function RootLayout({
     <html lang="zh-CN" suppressHydrationWarning>
       <body>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <div className="max-w-5xl w-[1000px] mt-16 mx-auto bg-[var(--color-paper)] shadow-xl shadow-gray-200 dark:shadow-gray-900 overflow-hidden p-16">
+          <div className="max-w-5xl w-[1000px] mt-16 mx-auto bg-[var(--color-paper)] shadow-xl shadow-gray-200 dark:shadow-gray-900 p-16">
             <Header />
             {children}
           </div>

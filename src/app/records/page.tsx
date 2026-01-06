@@ -30,7 +30,7 @@ export default async function RecordsPage() {
                 className="block group"
               >
                 <article className="py-8 border-b border-[var(--color-border)] hover:border-primary transition-colors">
-                  <h3 className="text-xl font-medium mb-6">
+                  <h3 className="text-xl font-medium mb-6 text-[var(--color-text)]">
                     {post.title}
                   </h3>
                   <p className="text-[var(--color-text-secondary)] text-sm">
