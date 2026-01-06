@@ -8,7 +8,7 @@
     --color-paper: #ffffff;
     --color-text: #1a1a1a;
     --color-text-secondary: #666666;
-    --color-border: #e5e5e5;
+    --color-border: #eee;
   }
 
   .dark {
@@ -24,23 +24,45 @@
     font-feature-settings: "kern" 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    font-family: "Hind-Regular", "PingFang SC", "Arial", "Microsoft YaHei", sans-serif !important;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-sans;
   }
 
-  p, li {
+  p,
+  li {
     @apply leading-relaxed;
   }
 
   a {
-    @apply text-primary hover:text-primary-light transition-colors;
+    @apply text-[var(--color-text)] hover:text-primary transition-colors;
   }
 }
 
 @layer components {
-  .paper-container {
-    @apply bg-[var(--color-paper)] shadow-lg;
+
+  /* 文本样式 */
+  .text-secondary {
+    @apply text-[var(--color-text-secondary)];
+  }
+
+  .text-meta {
+    @apply text-sm text-[var(--color-text-secondary)];
+  }
+
+  .text-description {
+    @apply text-[var(--color-text-secondary)] leading-relaxed;
+  }
+
+  /* 链接样式 */
+  .link-primary {
+    @apply text-[var(--color-text)] hover:text-primary transition-colors;
   }
 }

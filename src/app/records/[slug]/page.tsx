@@ -45,12 +45,12 @@ export default async function PostPage({ params }: { params: { slug: string } })
         <h1 className="text-4xl md:text-5xl font-bold mb-4">
           {post.title}
         </h1>
-        <div className="flex items-center gap-4 text-sm text-[var(--color-text-secondary)]">
+        <div className="meta-info">
           <time>{post.date}</time>
           {post.tags && post.tags.length > 0 && (
             <div className="flex gap-2 flex-wrap">
               {post.tags.map(tag => (
-                <span key={tag} className="text-primary">
+                <span key={tag} className="tag">
                   #{tag}
                 </span>
               ))}

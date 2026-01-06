@@ -34,33 +34,33 @@ export default async function RecordsPageNumber({ params }: { params: { page: st
   const posts = allPosts.slice(startIndex, endIndex)
 
   return (
-    <div className="max-w-content mx-auto px-6 py-20">
-      <h1 className="text-4xl font-bold mb-12">记录</h1>
+    <div>
+      <h1 className="page-title">记录</h1>
 
       {posts.length === 0 ? (
-        <p className="text-[var(--color-text-secondary)]">暂无文章</p>
+        <p className="text-secondary">暂无文章</p>
       ) : (
         <>
-          <div className="space-y-8">
+          <div className="section-spacing">
             {posts.map(post => (
               <Link
                 key={post.slug}
                 href={`/records/${post.slug}`}
                 className="block group"
               >
-                <article className="pb-8 border-b border-[var(--color-border)] hover:border-primary transition-colors">
-                  <h2 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors">
+                <article className="card-spacing card-hover">
+                  <h2 className="card-title card-title-hover">
                     {post.title}
                   </h2>
-                  <p className="text-[var(--color-text-secondary)] mb-4 leading-relaxed">
+                  <p className="text-description mb-4">
                     {post.description}
                   </p>
-                  <div className="flex items-center gap-4 text-sm text-[var(--color-text-secondary)]">
+                  <div className="meta-info">
                     <time>{post.date}</time>
                     {post.tags && post.tags.length > 0 && (
                       <div className="flex gap-2 flex-wrap">
                         {post.tags.map(tag => (
-                          <span key={tag} className="text-primary">
+                          <span key={tag} className="tag">
                             #{tag}
                           </span>
                         ))}

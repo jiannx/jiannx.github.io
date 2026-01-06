@@ -15,14 +15,14 @@ export default async function MomentsPage() {
   const moments = allMoments.slice(startIndex, endIndex)
 
   return (
-    <div className="">
-      <h1 className="text-4xl font-bold mb-12">时刻</h1>
+    <div>
+      <h1 className="page-title">时刻</h1>
 
       {moments.length === 0 ? (
-        <p className="text-[var(--color-text-secondary)]">暂无时刻</p>
+        <p className="text-secondary">暂无时刻</p>
       ) : (
         <>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid-moments">
             {moments.map(moment => (
               <div key={moment.id} className="space-y-3">
                 {moment.images[0] && (
@@ -36,10 +36,10 @@ export default async function MomentsPage() {
                   </div>
                 )}
                 <div className="space-y-2">
-                  <p className="text-[var(--color-text-secondary)] leading-relaxed">
+                  <p className="text-description">
                     {moment.description}
                   </p>
-                  <div className="flex items-center gap-2 text-xs text-[var(--color-text-secondary)]">
+                  <div className="flex items-center gap-2 text-xs text-secondary">
                     <time>{moment.date}</time>
                     {moment.location && (
                       <>

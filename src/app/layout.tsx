@@ -22,6 +22,7 @@ export default function RootLayout({
           <div className="max-w-5xl w-[1000px] mx-auto my-16 bg-[var(--color-paper)] shadow-md overflow-hidden p-16">
             <Header />
             {children}
+
           </div>
           <Footer />
         </ThemeProvider>
