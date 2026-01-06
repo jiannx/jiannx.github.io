@@ -25,7 +25,7 @@ export default function Copy({ copyTip, copyData, children }: {
           {children}
           {isCopied &&
             <div className="absolute bottom-0 right-0 bg-base-100 rounded-full" >
-              <IconCircleCheckFilled stroke={1} size={12} color="green" />
+              <IconCircleCheckFilled stroke={1} size={10} color="green" />
             </div>
           }
         </div>

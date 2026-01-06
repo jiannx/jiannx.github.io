@@ -80,9 +80,9 @@ export default function Header() {
       )}
 
       <div className="my-16 flex align-items-center justify-between">
-        <Link href="/" className="hover:text-primary font-bold">
-          <div className='text-2xl'>大鹿</div>
-          <div className='text-2xl'>Jiann</div>
+        <Link href="/" className="hover:text-primary font-light">
+          <div className='text-4xl'>大鹿</div>
+          <div className='text-4xl'>Jiann</div>
         </Link>
         <div>
           <div>
@@ -90,21 +90,21 @@ export default function Header() {
           </div>
           <div className="flex items-center justify-end gap-4 mt-2 text-[var(--color-text-secondary)]">
             <Copy copyTip="Copy Wechat" copyData="lomo_hao">
-              <IconBrandWechat stroke={1} />
+              <IconBrandWechat stroke={1} size={20} />
             </Copy>
             <Copy copyTip="Copy Email" copyData="lemoo.lu@gmail.com">
-              <IconMail stroke={1} />
+              <IconMail stroke={1} size={20} />
             </Copy>
             {/* <Link>
                 <IconBrandWhatsapp stroke={1} />
               </Link> */}
             <div className="tooltip" data-tip="Click to open">
               <Link href="https://x.com/jiann_lu" target="_blank">
-                <IconBrandX stroke={1} />
+                <IconBrandX stroke={1} size={20} />
               </Link>
             </div>
             <Copy copyTip="Hangzhou, China" copyData="Hangzhou, China">
-              <IconCurrentLocation stroke={1} />
+              <IconCurrentLocation stroke={1} size={20} />
             </Copy>
           </div>
         </div>

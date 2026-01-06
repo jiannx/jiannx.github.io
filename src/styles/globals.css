@@ -47,22 +47,4 @@
 }
 
 @layer components {
-
-  /* 文本样式 */
-  .text-secondary {
-    @apply text-[var(--color-text-secondary)];
-  }
-
-  .text-meta {
-    @apply text-sm text-[var(--color-text-secondary)];
-  }
-
-  .text-description {
-    @apply text-[var(--color-text-secondary)] leading-relaxed;
-  }
-
-  /* 链接样式 */
-  .link-primary {
-    @apply text-[var(--color-text)] hover:text-primary transition-colors;
-  }
 }

@@ -13,26 +13,26 @@ export default async function Home() {
       {/* Recent Posts */}
       {recentPosts.length > 0 && (
         <>
-          <div className="list-spacing hover:text-primary">
+          <div className="space-y-6 hover:text-primary">
             {recentPosts.map(post => (
               <Link
                 key={post.slug}
                 href={`/records/${post.slug}`}
                 className="block group"
               >
-                <article className="py-4 card-hover ">
-                  <h3 className="article-title">
+                <article className="py-8 border-b border-[var(--color-border)] hover:border-primary transition-colors">
+                  <h3 className="text-xl font-medium mb-6">
                     {post.title}
                   </h3>
-                  <p className="text-secondary text-sm">
+                  <p className="text-[var(--color-text-secondary)] text-sm">
                     {post.description}
                   </p>
-                  <div className="text-xs text-secondary flex gap-4 mt-4">
+                  <div className="text-xs text-[var(--color-text-secondary)] flex gap-4 mt-8">
                     <time>{post.date}</time>
                     {post.tags && post.tags.length > 0 && (
                       <div className="flex gap-2">
                         {post.tags.slice(0, 3).map(tag => (
-                          <span key={tag} className="tag">
+                          <span key={tag} className="text-[var(--color-text-secondary)]">
                             #{tag}
                           </span>
                         ))}
@@ -42,22 +42,22 @@ export default async function Home() {
                 </article>
               </Link>
             ))}
-            <div className='text-center mt-8'>
-              <Link href="/records" className="link-view-all">
-                查看全部 →
-              </Link>
-            </div>
 
+          </div>
+          <div className='text-center mt-16'>
+            <Link href="/records" className="text-sm text-[var(--color-text)] hover:text-primary transition-colors">
+              查看全部 →
+            </Link>
           </div>
         </>
       )}
 
       {/* Recent Moments */}
       {recentMoments.length > 0 && (
-        <PaperContainer>
+        <>
           <div className="flex items-center justify-between mb-8">
-            <h2 className="section-title mb-0">时刻</h2>
-            <Link href="/moments" className="link-view-all">
+            <h2 className="text-2xl font-bold mb-0">时刻</h2>
+            <Link href="/moments" className="text-sm text-[var(--color-text)] hover:text-primary transition-colors">
               查看全部 →
             </Link>
           </div>
@@ -75,16 +75,16 @@ export default async function Home() {
                     />
                   </div>
                 )}
-                <p className="text-meta line-clamp-2">
+                <p className="text-sm text-[var(--color-text-secondary)] line-clamp-2">
                   {moment.description}
                 </p>
-                <time className="text-xs text-secondary">
+                <time className="text-xs text-[var(--color-text-secondary)]">
                   {moment.date}
                 </time>
               </div>
             ))}
           </div>
-        </PaperContainer>
+        </>
       )}
     </div>
   )

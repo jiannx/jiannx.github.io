@@ -35,32 +35,32 @@ export default async function RecordsPageNumber({ params }: { params: { page: st
 
   return (
     <div>
-      <h1 className="page-title">记录</h1>
+      <h1 className="text-4xl font-bold mb-12">记录</h1>
 
       {posts.length === 0 ? (
-        <p className="text-secondary">暂无文章</p>
+        <p className="text-[var(--color-text-secondary)]">暂无文章</p>
       ) : (
         <>
-          <div className="section-spacing">
+          <div className="space-y-8">
             {posts.map(post => (
               <Link
                 key={post.slug}
                 href={`/records/${post.slug}`}
                 className="block group"
               >
-                <article className="card-spacing card-hover">
-                  <h2 className="card-title card-title-hover">
+                <article className="pb-8 border-b border-[var(--color-border)] hover:border-primary transition-colors">
+                  <h2 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors">
                     {post.title}
                   </h2>
-                  <p className="text-description mb-4">
+                  <p className="text-[var(--color-text-secondary)] leading-relaxed mb-4">
                     {post.description}
                   </p>
-                  <div className="meta-info">
+                  <div className="flex items-center gap-4 text-sm text-[var(--color-text-secondary)]">
                     <time>{post.date}</time>
                     {post.tags && post.tags.length > 0 && (
                       <div className="flex gap-2 flex-wrap">
                         {post.tags.map(tag => (
-                          <span key={tag} className="tag">
+                          <span key={tag} className="text-[var(--color-text-secondary)]">
                             #{tag}
                           </span>
                         ))}

@@ -41,16 +41,16 @@ export default async function PostPage({ params }: { params: { slug: string } })
   return (
     <div>
       {/* Article Header */}
-      <header className="mb-12">
-        <h1 className="text-4xl md:text-5xl font-bold mb-4">
+      <header className="mb-8">
+        <h1 className="text-2xl font-bold mb-4">
           {post.title}
         </h1>
-        <div className="meta-info">
+        <div className="flex items-center gap-4 text-xs text-[var(--color-text-secondary)]">
           <time>{post.date}</time>
           {post.tags && post.tags.length > 0 && (
             <div className="flex gap-2 flex-wrap">
               {post.tags.map(tag => (
-                <span key={tag} className="tag">
+                <span key={tag} className="text-[var(--color-text-secondary)]">
                   #{tag}
                 </span>
               ))}

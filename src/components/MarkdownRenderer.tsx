@@ -6,13 +6,13 @@ import remarkGfm from 'remark-gfm'
 export default function MarkdownRenderer({ content }: { content: string }) {
   return (
     <article className="
-      prose prose-lg max-w-none
+      prose max-w-none
       prose-headings:font-bold prose-headings:tracking-tight
-      prose-h1:text-4xl prose-h1:mb-6 prose-h1:mt-0
-      prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-4 prose-h2:pb-2 prose-h2:border-b prose-h2:border-[var(--color-border)]
-      prose-h3:text-2xl prose-h3:mt-8 prose-h3:mb-3
-      prose-h4:text-xl prose-h4:mt-6 prose-h4:mb-2
-      prose-p:leading-relaxed prose-p:mb-6 prose-p:text-[var(--color-text)]
+      prose-h1:text-2xl prose-h1:mb-6 prose-h1:mt-0
+      prose-h2:text-xl prose-h2:mt-8 prose-h2:mb-4 prose-h2:pb-2 prose-h2:border-b prose-h2:border-[var(--color-border)]
+      prose-h3:text-lg prose-h3:mt-6 prose-h3:mb-3
+      prose-h4:text-base prose-h4:mt-4 prose-h4:mb-2
+      prose-p:leading-relaxed prose-p:mb-6 prose-p:text-sm prose-p:text-[var(--color-text)]
       prose-a:text-[var(--color-text)] prose-a:no-underline prose-a:font-medium hover:prose-a:text-primary prose-a:transition-colors prose-a:underline
       prose-strong:text-[var(--color-text)] prose-strong:font-semibold
       prose-code:text-primary prose-code:bg-[var(--color-border)] prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:font-mono prose-code:before:content-none prose-code:after:content-none
