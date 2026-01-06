@@ -16,7 +16,7 @@ export default async function RecordsPage() {
 
   return (
     <div>
-      <h1 className="text-4xl font-bold mb-12">记录</h1>
+      <h1 className="text-4xl mb-12">记录</h1>
 
       {posts.length === 0 ? (
         <p className="text-[var(--color-text-secondary)]">暂无文章</p>
@@ -29,18 +29,18 @@ export default async function RecordsPage() {
                 href={`/records/${post.slug}`}
                 className="block group"
               >
-                <article className="pb-8 border-b border-[var(--color-border)] hover:border-primary transition-colors">
-                  <h2 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors">
+                <article className="py-8 border-b border-[var(--color-border)] hover:border-primary transition-colors">
+                  <h3 className="text-xl font-medium mb-6">
                     {post.title}
-                  </h2>
-                  <p className="text-[var(--color-text-secondary)] leading-relaxed mb-4">
+                  </h3>
+                  <p className="text-[var(--color-text-secondary)] text-sm">
                     {post.description}
                   </p>
-                  <div className="flex items-center gap-4 text-sm text-[var(--color-text-secondary)]">
+                  <div className="text-xs text-[var(--color-text-secondary)] flex gap-4 mt-8">
                     <time>{post.date}</time>
                     {post.tags && post.tags.length > 0 && (
-                      <div className="flex gap-2 flex-wrap">
-                        {post.tags.map(tag => (
+                      <div className="flex gap-2">
+                        {post.tags.slice(0, 3).map(tag => (
                           <span key={tag} className="text-[var(--color-text-secondary)]">
                             #{tag}
                           </span>

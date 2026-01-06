@@ -16,7 +16,7 @@ export default async function MomentsPage() {
 
   return (
     <div>
-      <h1 className="text-4xl font-bold mb-12">时刻</h1>
+      <h1 className="text-4xl mb-12">时刻</h1>
 
       {moments.length === 0 ? (
         <p className="text-[var(--color-text-secondary)]">暂无时刻</p>
