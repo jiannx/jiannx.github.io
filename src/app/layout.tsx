@@ -6,8 +6,8 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 
 export const metadata = {
-  title: 'Jiann',
-  description: '个人博客',
+  title: "Jiann's Space",
+  description: "Personal space of Jiann Lu",
 }
 
 export default function RootLayout({
@@ -19,7 +19,7 @@ export default function RootLayout({
     <html lang="zh-CN" suppressHydrationWarning>
       <body>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <div className="max-w-5xl w-[1000px] mt-16 mx-auto bg-[var(--color-paper)] shadow-xl shadow-gray-200 dark:shadow-gray-900 p-16">
+          <div className="max-w-5xl md:mt-16 mx-auto bg-[var(--color-paper)] shadow-xl shadow-gray-200 dark:shadow-gray-900 md:p-16 p-8">
             <Header />
             {children}
           </div>

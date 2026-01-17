@@ -30,6 +30,7 @@ export default function MarkdownRenderer({ content }: { content: string }) {
       dark:prose-invert
       dark:prose-pre:bg-neutral-900
       dark:prose-code:bg-neutral-900
+      break-words
     ">
       <ReactMarkdown 
         remarkPlugins={[remarkGfm]}

@@ -46,16 +46,16 @@ export default function Pagination({ currentPage, totalPages, basePath }: Pagina
           href={currentPage === 2 ? basePath.replace('/p', '') : `${basePath}/${currentPage - 1}`}
           className="px-4 py-2 rounded-lg border border-[var(--color-border)] hover:border-primary hover:text-primary transition-colors"
         >
-          上一页
+          Previous
         </Link>
       ) : (
         <span className="px-4 py-2 rounded-lg border border-[var(--color-border)] text-[var(--color-text-secondary)] cursor-not-allowed">
-          上一页
+          Previous
         </span>
       )}
 
       {/* Page Numbers */}
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2 hidden md:flex">
         {visiblePages.map((page, index) => {
           if (page === '...') {
             return (
@@ -91,11 +91,11 @@ export default function Pagination({ currentPage, totalPages, basePath }: Pagina
           href={`${basePath}/${currentPage + 1}`}
           className="px-4 py-2 rounded-lg border border-[var(--color-border)] hover:border-primary hover:text-primary transition-colors"
         >
-          下一页
+          Next
         </Link>
       ) : (
         <span className="px-4 py-2 rounded-lg border border-[var(--color-border)] text-[var(--color-text-secondary)] cursor-not-allowed">
-          下一页
+          Next
         </span>
       )}
     </nav>

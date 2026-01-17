@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import { getAllMoments } from '@/lib/moments'
-import PaperContainer from '@/components/PaperContainer'
 import Pagination from '@/components/Pagination'
 import { notFound } from 'next/navigation'
 

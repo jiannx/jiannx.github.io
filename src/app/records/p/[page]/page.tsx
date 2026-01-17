@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import { getAllPosts } from '@/lib/posts'
-import PaperContainer from '@/components/PaperContainer'
 import Pagination from '@/components/Pagination'
 import { notFound } from 'next/navigation'
 

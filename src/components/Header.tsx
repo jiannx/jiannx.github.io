@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 import ThemeToggle from './ThemeToggle'
-import { IconBrandWechat, IconBrandX, IconCurrentLocation, IconMail } from "@tabler/icons-react";
+import { IconBrandWechat, IconBrandX, IconCurrentLocation, IconMail, IconBrandGithub } from "@tabler/icons-react";
 import Copy from '../components/Copy';
 
 export default function Header() {
@@ -12,10 +12,10 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   const navItems = [
-    { href: '/', label: '首页' },
-    { href: '/records', label: '记录' },
-    { href: '/moments', label: '时刻' },
-    { href: '/about', label: '关于' },
+    { href: '/', label: 'Home' },
+    { href: '/records', label: 'Records' },
+    { href: '/moments', label: 'Moments' },
+    { href: '/about', label: 'About' },
   ]
 
   return (
@@ -28,7 +28,7 @@ export default function Header() {
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className={`transition-colors ${pathname.startsWith(item.href)
+                  className={`transition-colors font-medium ${pathname.startsWith(item.href)
                     ? 'link-primary'
                     : 'link-primary'
                     }`}
@@ -79,13 +79,13 @@ export default function Header() {
         </div>
       )}
 
-      <div className="my-16 flex align-items-center justify-between">
+      <div className="my-20 flex align-items-center justify-between">
         <Link href="/" className="hover:text-primary font-light">
           <div className='text-4xl'>大鹿</div>
           <div className='text-4xl'>Jiann</div>
         </Link>
-        <div>
-          <div>
+        <div className='text-right'>
+          <div className="w-48 md:w-auto">
             Do not go gentle into that good night. 🏕️
           </div>
           <div className="flex items-center justify-end gap-4 mt-2 text-[var(--color-text-secondary)]">
@@ -103,9 +103,14 @@ export default function Header() {
                 <IconBrandX stroke={1} size={20} />
               </Link>
             </div>
-            <Copy copyTip="Hangzhou, China" copyData="Hangzhou, China">
+            {/* <Copy copyTip="Hangzhou, China" copyData="Hangzhou, China">
               <IconCurrentLocation stroke={1} size={20} />
-            </Copy>
+            </Copy> */}
+            <div className="tooltip" data-tip="Click to open">
+              <Link href="https://github.com/jiannx" target="_blank">
+                <IconBrandGithub stroke={1} size={20} />
+              </Link>
+            </div>
           </div>
         </div>
       </div>

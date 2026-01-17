@@ -44,17 +44,17 @@ function parseMoment(filePath: string): Moment | null {
     const { data, content } = matter(fileContents)
     
     // 只处理带有 images 字段的文件
-    if (!data.images || !Array.isArray(data.images) || data.images.length === 0) {
+    if (!data.images) {
       return null
     }
+    const images = Array.isArray(data.images) ? data.images : [data.images]
     
     const fileName = path.basename(filePath, '.md')
     const id = fileName
-    
     return {
       id,
-      date: data.date || new Date().toISOString().split('T')[0],
-      images: data.images,
+      date: data.date ? new Date(data.date).toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
+      images: images,
       description: data.description || content.slice(0, 100),
       location: data.location,
       content: content || '',

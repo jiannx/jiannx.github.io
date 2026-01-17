@@ -1,7 +1,6 @@
 import { notFound } from 'next/navigation'
 import { getAllPosts, getPostBySlug } from '@/lib/posts'
 import MarkdownRenderer from '@/components/MarkdownRenderer'
-import PaperContainer from '@/components/PaperContainer'
 
 // 移除 dynamicParams = false 以允许动态路由在开发模式下工作
 

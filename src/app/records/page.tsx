@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { getAllPosts } from '@/lib/posts'
-import PaperContainer from '@/components/PaperContainer'
 import Pagination from '@/components/Pagination'
+import PostCard from '@/components/PostCard'
 
 const POSTS_PER_PAGE = 12
 
@@ -16,40 +16,15 @@ export default async function RecordsPage() {
 
   return (
     <div>
-      <h1 className="text-4xl mb-12">记录</h1>
+      <h1 className="text-4xl mb-16">Records</h1>
 
       {posts.length === 0 ? (
-        <p className="text-[var(--color-text-secondary)]">暂无文章</p>
+        <p className="text-[var(--color-text-secondary)]">No posts available</p>
       ) : (
         <>
-          <div className="space-y-8">
+          <div className="space-y-12">
             {posts.map(post => (
-              <Link
-                key={post.slug}
-                href={`/records/${post.slug}`}
-                className="block group"
-              >
-                <article className="py-8 border-b border-[var(--color-border)] hover:border-primary transition-colors">
-                  <h3 className="text-xl font-medium mb-6 text-[var(--color-text)]">
-                    {post.title}
-                  </h3>
-                  <p className="text-[var(--color-text-secondary)] text-sm">
-                    {post.description}
-                  </p>
-                  <div className="text-xs text-[var(--color-text-secondary)] flex gap-4 mt-8">
-                    <time>{post.date}</time>
-                    {post.tags && post.tags.length > 0 && (
-                      <div className="flex gap-2">
-                        {post.tags.slice(0, 3).map(tag => (
-                          <span key={tag} className="text-[var(--color-text-secondary)]">
-                            #{tag}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                </article>
-              </Link>
+              <PostCard key={post.slug} post={post} />
             ))}
           </div>
 
