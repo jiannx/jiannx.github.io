@@ -17,7 +17,7 @@ export default async function PostCard({ post }: { post: any }) {
           <time>{post.date}</time>
           {post.tags && post.tags.length > 0 && (
             <div className="flex gap-2">
-              {post.tags.slice(0, 3).map(tag => (
+              {post.tags.slice(0, 3).map((tag: any) => (
                 <span key={tag} className="text-[var(--color-text-secondary)]">
                   #{tag}
                 </span>

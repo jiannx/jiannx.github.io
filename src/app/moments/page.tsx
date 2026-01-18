@@ -12,7 +12,7 @@ export default async function MomentsPage() {
   const startIndex = 0
   const endIndex = MOMENTS_PER_PAGE
   const moments = allMoments.slice(startIndex, endIndex)
-  console.log('moments', moments)
+
   return (
     <div>
       <h1 className="text-4xl mb-16">Moments</h1>
