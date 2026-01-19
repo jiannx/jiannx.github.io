@@ -50,8 +50,20 @@ function extractYear(filePath: string): string {
 
 // 生成 slug（使用文件名或标题）
 function generateSlug(fileName: string, title?: string): string {
-  const baseSlug = fileName.replace(/\.md$/, '').toLowerCase()
-  return baseSlug.replace(/[^a-z0-9\u4e00-\u9fa5]+/g, '-')
+  const baseSlug = fileName.replace(/\.md$/, '')
+  
+  // 如果包含中文字符，使用 Buffer 转 base64 作为 slug（URL 安全）
+  if (/[\u4e00-\u9fa5]/.test(baseSlug)) {
+    // 使用 base64url 编码（URL 安全版本）
+    return Buffer.from(baseSlug, 'utf-8')
+      .toString('base64')
+      .replace(/\+/g, '-')
+      .replace(/\//g, '_')
+      .replace(/=/g, '')
+  }
+  
+  // 对于英文文件名，保持原有逻辑
+  return baseSlug.toLowerCase().replace(/[^a-z0-9]+/g, '-')
 }
 
 // 解析单个文章
